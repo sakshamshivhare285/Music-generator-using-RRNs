@@ -41,7 +41,7 @@ def read_batches(T, vocab_size):
                 Y[batch_idx, i, T[batch_char * batch_idx + start + i]] = 1
         yield X, Y
 
-def train(text, epochs=100, save_freq=10):
+def train(text, epochs=50, save_freq=10):
 
     '''converting char to index and vice versa'''
     char_to_idx = {ch: i for (i, ch) in enumerate(sorted(list(set(text))))}
@@ -86,8 +86,8 @@ def train(text, epochs=100, save_freq=10):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Train the model on some text.')
     parser.add_argument('--input', default='input.txt', help='name of the text file to train from')
-    parser.add_argument('--epochs', type=int, default=100, help='number of epochs to train for')
-    parser.add_argument('--freq', type=int, default=10, help='checkpoint save frequency')
+    parser.add_argument('--epochs', type=int, default=50, help='number of epochs to train for')
+    parser.add_argument('--freq', type=int, default=5, help='checkpoint save frequency')
     args = parser.parse_args()
 
     if not os.path.exists(log_dir):
